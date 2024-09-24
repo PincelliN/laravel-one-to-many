@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Functions\Helper;
 use App\Http\Requests\WorkRequest;
 use App\Models\Work;
+use App\Models\Type;
 
 class WorkController extends Controller
 {
@@ -24,7 +25,8 @@ class WorkController extends Controller
      */
     public function create()
     {
-       return view('admin.work.create');
+        $types=Type::all();
+       return view('admin.work.create',compact('types'));
     }
 
     /**
@@ -57,7 +59,8 @@ class WorkController extends Controller
     public function edit(Work $work)
     {
       /*   $work=Work::find($work); */
-       return view('admin.work.edit', compact('work'));
+      $types=Type::all();
+       return view('admin.work.edit', compact('work','types'));
     }
 
     /**

@@ -16,6 +16,7 @@
                     <th scope="col">Argomento</th>
                     <th scope="col">Data di inizio</th>
                     <th scope="col">Data fine</th>
+                    <th scope="col">Linguaggio</th>
                     <th scope="col">N_post</th>
                     <th scope="col">N_collaboratori</th>
                     <th scope="col">Azione</th>
@@ -28,8 +29,9 @@
                         <td>{{ $work['id'] }}</td>
                         <td>{{ $work['title'] }}</td>
                         <td>{{ $work['subject'] }}</td>
-                        <td>{{ $work['start_date'] }}</td>
-                        <td>{{ $work['end_date'] }}</td>
+                        <td>{{ \Carbon\Carbon::parse($work['start_date'])->format('d/m/Y') }}</td>
+                        <td>{{ $work['end_date'] ? \Carbon\Carbon::parse($work['end_date'])->format('d/m/Y') : '' }}</td>
+                        <td><span class="badge bg-success text-dark">{{ $work->type?->name }}</span></td>
                         <td>{{ $work['post'] }}</td>
                         <td>{{ $work['collaborators'] }}</td>
                         <td>

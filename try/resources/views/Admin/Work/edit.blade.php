@@ -22,6 +22,16 @@
             @enderror
         </div>
         <div class="mb-3">
+            <label for="type" class="form-label">Titolo</label>
+            <select class="form-select" aria-label="Default select example" name="type_id" id="type">
+                <option value="">Linguaggio utilizzato</option>
+                @foreach ($types as $type)
+                    <option value="{{ $type->id }}" @if (old('type_id', $work->type?->id) == $type->id) selected @endif>
+                        {{ $type->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="mb-3">
             <label for="subject" class="form-label">Argomento</label>
             <input type="text" class="form-control" id="subject" name='subject' placeholder="php"
                 value="{{ old('subject', $work['subject']) }}">

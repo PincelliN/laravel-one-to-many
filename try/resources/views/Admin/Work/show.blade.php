@@ -17,11 +17,12 @@
                     <p class="card-text"><strong>Nussuna descrizione per questo progetto</strong></p>
                 @endif
                 <ul>
+                    <li>Linguaggio:{{ $work->type ? $work->type->name : '' }}</li>
                     <li>Data inizio:{{ $work->start_date }}</li>
                     @if ($work->end_date != null)
                         <li>Data Fine:{{ $work->end_date }}</li>
                     @else
-                        <li><strong>Lavoro Ancora in sviluppo</strong></li>
+                        <li><strong>Progetto ancora in sviluppo</strong></li>
                     @endif
                     <li>Numero Post: {{ $work->post }}</li>
                     @if ($work->collaborators > 0)

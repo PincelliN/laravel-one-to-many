@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashController;
+use App\Http\Controllers\admin\TypeController;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ Route::middleware(['auth','verified'])
 ->group(function(){
     Route::get('/',[DashController::class,'index'])->name('home');
     Route::resource('work', WorkController::class);
+    Route::resource('type',TypeController::class);
 });
 
 Route::middleware('auth')->group(function () {

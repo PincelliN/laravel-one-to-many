@@ -24,4 +24,5 @@ class Work extends Model
         'description',
 
     ];
+
 }
