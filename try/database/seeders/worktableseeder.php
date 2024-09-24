@@ -7,6 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Functions\Helper;
+use App\Models\Type;
 
 class worktableseeder extends Seeder
 {
@@ -17,6 +18,7 @@ class worktableseeder extends Seeder
     {
         for($i=0;$i<100;$i++){
             $new_progetto = new Work();
+            $new_progetto->type_id = Type::inRandomOrder()->first()->id;
             $new_progetto->title = $faker->unique()->word(1,true);
             $new_progetto->slug = Helper::generateSlug($new_progetto->title,Work::class);
             $new_progetto->subject = $faker->word(1,true);

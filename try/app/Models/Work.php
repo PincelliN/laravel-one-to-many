@@ -8,8 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Work extends Model
 {
     use HasFactory;
+
+    public function  type(){
+        return $this->belongsTo(Type::class);
+    }
     protected $fillable=[
         'title',
+        'type_id',
         'slug',
         'subject',
         'start_date',
