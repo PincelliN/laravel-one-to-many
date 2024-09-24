@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Type;
+use App\Functions\Helper;
 
 class TypeController extends Controller
 {
@@ -30,7 +31,10 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->all();
+        $data['slug'] = Helper::generateSlug($data['name'],Type::class);
+        $type=Type::create($data);
+        return redirect()->route('admin.type.index');
     }
 
     /**
@@ -52,16 +56,24 @@ class TypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Type $type)
     {
-        //
+         $data=$request->all();
+        $data['slug'] = Helper::generateSlug($data['name'],Type::class);
+        $type->update($data);
+        return redirect()->route('admin.type.index');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Type $type)
     {
-        //
+
+        $type->delete();
+
+        return redirect()->route('admin.type.index')->with('delete','il linguaggio è stato cancellato');
     }
 }
